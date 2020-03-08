@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./style.css"
 const qs = require('qs');
 const axios = require('axios').default;
 
