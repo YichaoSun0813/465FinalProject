@@ -54,6 +54,7 @@ export default class CreateUser extends Component {
     <div className="form-group"> 
       <label>Username: </label>
       <input  type="text"
+          id="class1"
           required
           className="form-control"
           value={this.state.username}
@@ -63,6 +64,7 @@ export default class CreateUser extends Component {
     <div className="form-group"> 
       <label>Where Are You From: </label>
       <input  type="text"
+          id="class1"
           required
           className="form-control"
           value={this.state.location}
