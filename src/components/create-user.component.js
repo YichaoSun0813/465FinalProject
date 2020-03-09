@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./style.css"
+import "./style.css";
 const qs = require('qs');
 const axios = require('axios').default;
 
@@ -72,6 +72,8 @@ export default class CreateUser extends Component {
           />
     </div>
     <div className="form-group">
+      <br>
+      </br>
       <input type="submit" value="Create User" className="btn btn-primary" />
     </div>
   </form>

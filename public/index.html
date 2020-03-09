@@ -26,16 +26,18 @@
     -->
     <title>React App</title>
     <style>
-      :root {
+      :root 
+      {
           --blur: 2;
       }
 
-      * {
+      * 
+      {
           box-sizing: border-box;
       }
 
-      html,
-      body {
+      html,body 
+      {
           font-family: 'Arial', sans-serif;
           background: #111;
       }
@@ -45,28 +47,24 @@
         color: white;
       }
 
-      canvas {
-          position: fixed;
-          height: 100vh;
-          width: 100vw;
-          -webkit-filter: blur(calc(var(--blur) * 1px));
-          filter: blur(calc(var(--blur) * 1px));
-      }
-
-      input {
+      input 
+      {
           cursor: pointer;
           display: block;
       }
 
-      label {
+      label 
+      {
           margin-bottom: 30px;
       }
 
-          label:last-of-type {
-              margin-bottom: 0;
-          }
+      label:last-of-type 
+      {
+          margin-bottom: 0;
+      }
 
-      .menu {
+      .menu 
+      {
           position: absolute;
           top: 0;
           left: 0;
@@ -82,12 +80,14 @@
           transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
       }
 
-      .menu--open {
+      .menu--open 
+      {
           -webkit-transform: translate(0, 0);
           transform: translate(0, 0);
       }
 
-      .icon {
+      .icon 
+      {
           height: 60%;
           width: 60%;
           position: absolute;
@@ -97,7 +97,8 @@
           transform: translate(-50%, -50%);
       }
 
-      button {
+      #button1 
+      {
           height: 44px;
           width: 44px;
           background: 0;
@@ -111,45 +112,52 @@
           top: 0;
       }
 
-          button span {
-              width: 100%;
-              height: 20%;
-              border-radius: 4px;
-              background: #fff;
-              display: block;
-              position: absolute;
-              top: 0;
-              transition: -webkit-transform 0.25s ease-out;
-              transition: transform 0.25s ease-out;
-              transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
-          }
+      button span 
+      {
+          width: 100%;
+          height: 20%;
+          border-radius: 4px;
+          background: #fff;
+          display: block;
+          position: absolute;
+          top: 0;
+          transition: -webkit-transform 0.25s ease-out;
+          transition: transform 0.25s ease-out;
+          transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
+      }
 
-              button span:nth-child(1) {
-                  -webkit-transform-origin: top left;
-                  transform-origin: top left;
-              }
+      button span:nth-child(1) 
+      {
+          -webkit-transform-origin: top left;
+          transform-origin: top left;
+      }
 
-              button span:nth-child(2) {
-                  top: 40%;
-              }
+      button span:nth-child(2) 
+      {
+          top: 40%;
+      }
 
-              button span:nth-child(3) {
-                  -webkit-transform-origin: top left;
-                  transform-origin: top left;
-                  top: 80%;
-              }
+      button span:nth-child(3) 
+      {
+          -webkit-transform-origin: top left;
+          transform-origin: top left;
+          top: 80%;
+      }
 
-      .menu--open span:nth-child(1) {
+      .menu--open span:nth-child(1) 
+      {
           -webkit-transform: translate(5px, 3px) rotate(45deg);
           transform: translate(5px, 3px) rotate(45deg);
       }
 
-      .menu--open span:nth-child(2) {
+      .menu--open span:nth-child(2) 
+      {
           -webkit-transform: scaleX(0);
           transform: scaleX(0);
       }
 
-      .menu--open span:nth-child(3) {
+      .menu--open span:nth-child(3) 
+      {
           -webkit-transform: translate(2px, 0) rotate(-45deg);
           transform: translate(2px, 0) rotate(-45deg);
       }
@@ -171,7 +179,7 @@
     <canvas></canvas>
 
     <div class="menu">
-        <button>
+        <button id="button1">
             <div class="icon"><span></span><span></span><span></span></div>
         </button>
         <label>
@@ -193,6 +201,7 @@
     </div>
 
     <script>
+        // BACKGROUND START
         var canvas = document.querySelector('canvas');
         var context = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -201,25 +210,30 @@
         requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame;
 
         var menu = document.querySelector('.menu');
-        var modify = function modify(e) {
+        var modify = function modify(e) 
+        {
             OPTIONS[e.target.id] = parseInt(e.target.value, 10);
-            if (e.target.id === 'AMOUNT') {
+            if (e.target.id === 'AMOUNT') 
+            {
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 particles = genParticles();
             }
-            if (e.target.id === 'BLUR') {
+            if (e.target.id === 'BLUR') 
+            {
                 document.documentElement.style.setProperty('--blur', parseInt(e.target.value, 10));
             }
         };
         menu.addEventListener('change', modify);
 
         var button = document.querySelector('button');
-        var handleClick = function handleClick(e) {
+        var handleClick = function handleClick(e) 
+        {
             return menu.classList.toggle('menu--open');
         };
         button.addEventListener('click', handleClick);
 
-        var OPTIONS = {
+        var OPTIONS = 
+        {
             AMOUNT: 100,
             UPPER_LIMIT: 20,
             LOWER_LIMIT: 1
@@ -228,20 +242,25 @@
         var UPPER_SIZE = 10;
         var LOWER_SIZE = 4;
 
-        var doIt = function doIt() {
+        var doIt = function doIt() 
+        {
             return Math.random() > 0.5;
         };
-        var update = function update(p) {
+        var update = function update(p) 
+        {
             return doIt() ? Math.max(OPTIONS.LOWER_LIMIT, p - 1) : Math.min(p + 1, OPTIONS.UPPER_LIMIT);
         };
-        var reset = function reset(p) {
+        var reset = function reset(p) 
+        {
             p.x = p.startX;
             p.y = p.startY;
         };
-        var floored = function floored(r) {
+        var floored = function floored(r) 
+        {
             return Math.floor(Math.random() * r);
         };
-        var genParticles = function genParticles() {
+        var genParticles = function genParticles() 
+        {
             return new Array(OPTIONS.AMOUNT).fill().map(function (p) {
                 var size = floored(UPPER_SIZE) + LOWER_SIZE;
                 var c = document.createElement('canvas');
@@ -277,8 +296,10 @@
         var particles = genParticles();
         var FRAME_COUNT = 0;
 
-        var draw = function draw() {
-            if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
+        var draw = function draw() 
+        {
+            if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) 
+            {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
                 particles = genParticles();
@@ -288,8 +309,10 @@
             var _didIteratorError = false;
             var _iteratorError = undefined;
 
-            try {
-                for (var _iterator = particles[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done) ; _iteratorNormalCompletion = true) {
+            try 
+            {
+                for (var _iterator = particles[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done) ; _iteratorNormalCompletion = true) 
+                {
                     var particle = _step.value;
 
                     context.clearRect(particle.x, particle.y, particle.size, particle.size);
@@ -301,16 +324,25 @@
                     context.drawImage(particle.c, particle.x, particle.y);
                     if (particle.x > canvas.width || particle.y < -particle.size) reset(particle);
                 }
-            } catch (err) {
+            } 
+            catch (err) 
+            {
                 _didIteratorError = true;
                 _iteratorError = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion && _iterator.return) {
+            } 
+            finally 
+            {
+                try 
+                {
+                    if (!_iteratorNormalCompletion && _iterator.return) 
+                    {
                         _iterator.return();
                     }
-                } finally {
-                    if (_didIteratorError) {
+                } 
+                finally 
+                {
+                    if (_didIteratorError) 
+                    {
                         throw _iteratorError;
                     }
                 }
@@ -319,6 +351,7 @@
             requestAnimationFrame(draw);
         };
         requestAnimationFrame(draw);
+        // BACKGROUND END
     </script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import "./style.css"
+import "./style.css";
 import axios from 'axios';
 import { Map } from 'google-maps-react';
 import { GoogleApiWrapper } from 'google-maps-react';
