@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import "./style.css";
+
+//qs not used. not sure why it would not stringify
+//an object. using JSON.stringify instead
 const qs = require('qs');
+//axios allows us to send HTTP requests to the backend
 const axios = require('axios').default;
 
 export default class CreateUser extends Component {
     constructor(props) {
         super(props);  
 
+        //im really curious if this is the way you change state
+        //variables in react or if there are other ways
         this.onChangeUsername = this.onChangeUsername.bind(this);
         this.onChangeLocation = this.onChangeLocation.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -42,8 +48,10 @@ export default class CreateUser extends Component {
 
   console.log(newUser);
 
+  //send off the new user to aws mongoDb via atlas
   axios.post('http://localhost:5000/users/add', 
-    newUser).then(res => 
+    newUser)
+    .then(res => 
     console.log(res.data)
     );
 
@@ -53,7 +61,7 @@ export default class CreateUser extends Component {
   })
 
 }
-
+  
   render() {
     return (
         <div>

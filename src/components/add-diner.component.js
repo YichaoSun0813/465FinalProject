@@ -29,12 +29,19 @@ export default class AddDiner extends Component {
 
   //get the users from the database to check if entry is from
   //""verified"" user
+  //didMount() runs before the component is rendered and adds
+  //info to the page
   //!!!!!!!!!!!!!!!!!!!!!!check through the routine to see what else
   //needs changed after this fix
   componentDidMount() {
       axios.get('http://localhost:5000/users')
       .then(response => {
-        this.setState({ users: response.data });
+        if (response.data.length > 0) {
+          this.setState({
+            users: response.data.map(user => user.username),
+            username: response.data[0].username
+          });
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -73,7 +80,8 @@ export default class AddDiner extends Component {
   }
 
   onSubmit(e) {
-    e.preventDefault();//prevent default HTML submit routine
+    //prevent the default HTML form submit behavior fro occuring
+    e.preventDefault();
 
     const diner = {
       username: JSON.stringify(this.state.username),
