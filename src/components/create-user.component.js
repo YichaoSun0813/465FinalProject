@@ -27,15 +27,17 @@ export default class CreateUser extends Component {
     e.preventDefault();
 
     console.log("creating user");
+
+    //need to stringify all of the state variables for JSON
     const newUser = {
-        username: this.state.username,
-        location: this.state.location,
+        username: JSON.stringify(this.state.username),
+        location: JSON.stringify(this.state.location),
   };
 
   console.log(newUser);
 
   axios.post('http://localhost:5000/users/add', 
-    qs.stringify(newUser)).then(res => 
+    newUser).then(res => 
     console.log(res.data)
     );
 
