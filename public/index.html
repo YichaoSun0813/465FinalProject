@@ -161,6 +161,12 @@
           -webkit-transform: translate(2px, 0) rotate(-45deg);
           transform: translate(2px, 0) rotate(-45deg);
       }
+
+      svg 
+      {
+        display: none;
+      }
+
     </style>
   </head>
   <body>
@@ -201,85 +207,90 @@
     </div>
 
     <script>
-        // BACKGROUND START
-        var canvas = document.querySelector('canvas');
+        // reference tutorial: https://www.youtube.com/watch?v=_oXa6J93iD8&list=PLaiL-dW1ZK53w_8qaGCsv4fASU1wAO0tX&index=2
+        var canvas = document.querySelector('canvas'); // set up 
         var context = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame;
+        requestAnimationFrame = requestAnimationFrame || webkitRequestAnimationFrame; 
 
-        var menu = document.querySelector('.menu');
+        var menu = document.querySelector('.menu'); 
         var modify = function modify(e) 
         {
-            OPTIONS[e.target.id] = parseInt(e.target.value, 10);
+            OPTIONS[e.target.id] = parseInt(e.target.value, 10); // which they click the amount and blur in menu
             if (e.target.id === 'AMOUNT') 
             {
-                context.clearRect(0, 0, canvas.width, canvas.height);
-                particles = genParticles();
+                context.clearRect(0, 0, canvas.width, canvas.height);  // clean the effect
+                particles = genParticles();  // restart the effect
             }
-            if (e.target.id === 'BLUR') 
+            if (e.target.id === 'BLUR') // still in problem, no effect
             {
                 document.documentElement.style.setProperty('--blur', parseInt(e.target.value, 10));
             }
         };
-        menu.addEventListener('change', modify);
+        menu.addEventListener('change', modify); // so that user can modify the background effect
 
         var button = document.querySelector('button');
         var handleClick = function handleClick(e) 
         {
-            return menu.classList.toggle('menu--open');
+            return menu.classList.toggle('menu--open'); // extension the menu 
         };
-        button.addEventListener('click', handleClick);
+        button.addEventListener('click', handleClick);  // so that user can open the menu
+
 
         var OPTIONS = 
         {
-            AMOUNT: 100,
-            UPPER_LIMIT: 20,
-            LOWER_LIMIT: 1
+            AMOUNT: 100, // amount
+            UPPER_LIMIT: 20, // max speed
+            LOWER_LIMIT: 1  // min speed
         };
 
-        var UPPER_SIZE = 10;
-        var LOWER_SIZE = 4;
+        var UPPER_SIZE = 10; // max particles size
+        var LOWER_SIZE = 4; //min particles size
 
         var doIt = function doIt() 
         {
             return Math.random() > 0.5;
         };
-        var update = function update(p) 
+
+        var update = function update(p)  // real time updation when you want to change the speed of particles
         {
             return doIt() ? Math.max(OPTIONS.LOWER_LIMIT, p - 1) : Math.min(p + 1, OPTIONS.UPPER_LIMIT);
         };
-        var reset = function reset(p) 
+
+        var reset = function reset(p) // position of x
         {
             p.x = p.startX;
             p.y = p.startY;
         };
-        var floored = function floored(r) 
+
+        var floored = function floored(r) // return size of particles
         {
             return Math.floor(Math.random() * r);
         };
+
         var genParticles = function genParticles() 
         {
             return new Array(OPTIONS.AMOUNT).fill().map(function (p) {
-                var size = floored(UPPER_SIZE) + LOWER_SIZE;
-                var c = document.createElement('canvas');
+                var size = floored(UPPER_SIZE) + LOWER_SIZE;  // get the size of particles
+                var c = document.createElement('canvas'); // set up again
                 var ctx = c.getContext('2d');
-                var r = Math.PI / 180 * floored(360);
-                var color = 'rgba(255,' + (100 + Math.floor(Math.random() * 70)) + ', 0, ' + Math.random() + ')';
+                var r = Math.PI / 180 * floored(360); // create different shape, if not, all particles will have same shape
+                var color = 'rgba(255,' + (100 + Math.floor(Math.random() * 70)) + ', 0, ' + Math.random() + ')'; // color
                 var xDelayed = doIt();
-                var startX = xDelayed ? -(size + floored(canvas.width)) : floored(canvas.width * 0.25);
-                var startY = xDelayed ? size + floored(canvas.height * 0.25) + Math.floor(canvas.height * 0.75) : canvas.height + size + floored(canvas.height);
+                var startX = xDelayed ? -(size + floored(canvas.width)) : floored(canvas.width * 0.25); // Delay the occurrence of some examples, so that all particles do not appear at the same time
+                var startY = xDelayed ? size + floored(canvas.height * 0.25) + Math.floor(canvas.height * 0.75) : canvas.height + size + floored(canvas.height); // also set the initial position of particle
                 c.height = size;
                 c.width = size;
                 context.globalCompositeOperation = 'multiply';
-                // ctx.filter = `blur(${Math.random() * size}px)`
-                ctx.translate(size / 2, size / 2);
-                ctx.rotate(r);
+
+                ctx.translate(size / 2, size / 2); // remaps the position on the canvas.
+                ctx.rotate(r); // rotates the current drawing.
                 ctx.translate(-(size / 2), -(size / 2));
-                ctx.fillStyle = color;
-                ctx.fillRect(0, 0, size, size);
-                return {
+                ctx.fillStyle = color; // use color
+                ctx.fillRect(0, 0, size, size); // draws a particle 
+                return { // create particle
                     x: startX,
                     y: startY,
                     startY: startY,
@@ -293,18 +304,18 @@
             });
         };
 
-        var particles = genParticles();
+        var particles = genParticles(); 
         var FRAME_COUNT = 0;
 
         var draw = function draw() 
         {
-            if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) 
+            if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) // make sure particle merge at suitable position
             {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
                 particles = genParticles();
             }
-            // context.restore()
+            
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
             var _iteratorError = undefined;
@@ -317,12 +328,13 @@
 
                     context.clearRect(particle.x, particle.y, particle.size, particle.size);
                     FRAME_COUNT++;
-                    if (particle.y < canvas.height || particle.startX < 0) particle.x += particle.vx;
-                    if (particle.x > 0 || particle.startY > canvas.height) particle.y -= particle.vy;
-                    if (FRAME_COUNT % 11 === 0 && doIt()) particle.vx = update(particle.vx);
-                    if (FRAME_COUNT % 13 === 0 && doIt()) particle.vy = update(particle.vy);
+                    if (particle.y < canvas.height || particle.startX < 0) particle.x += particle.vx; // move the particle along x
+                    if (particle.x > 0 || particle.startY > canvas.height) particle.y -= particle.vy; // move the particle along y
+                    if (FRAME_COUNT % 11 === 0 && doIt()) particle.vx = update(particle.vx); // change the velocity of particle along X
+                    if (FRAME_COUNT % 13 === 0 && doIt()) particle.vy = update(particle.vy); // change the velocity of particle along Y
                     context.drawImage(particle.c, particle.x, particle.y);
-                    if (particle.x > canvas.width || particle.y < -particle.size) reset(particle);
+                    if (particle.x > canvas.width || particle.y < -particle.size) reset(particle); // if a particle move our of bound, reset it
+                    // So it's going to last forever
                 }
             } 
             catch (err) 
@@ -351,8 +363,8 @@
             requestAnimationFrame(draw);
         };
         requestAnimationFrame(draw);
-        // BACKGROUND END
     </script>
   </body>
 </html>
+
 
