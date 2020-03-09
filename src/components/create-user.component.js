@@ -18,11 +18,17 @@ export default class CreateUser extends Component {
     }
 
   onChangeUsername(e) {
-    this.setState({username: e.target.value});
+    this.setState({
+      username: e.target.value
+    });
   }
+
   onChangeLocation(e) {
-      this.setState({location: e.target.value});
+      this.setState({
+        location: e.target.value
+      });
   }
+
   onSubmit(e) {
     e.preventDefault();
 

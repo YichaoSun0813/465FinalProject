@@ -43,19 +43,33 @@ export default class AddDiner extends Component {
 
   //methods to update the state properties
   onChangeUsername(e) {
-    this.setState({username: e.target.value});
+    this.setState({
+      username: e.target.value
+    });
   }
+
   onChangeDiner(e) {
-    this.setState({dinerName: e.target.value});
+    this.setState({
+      dinerName: e.target.value
+    });
   }
+
   onChangeDescription(e) {
-    this.setState({description: e.target.value});
+    this.setState({
+      description: e.target.value
+    });
   }
+
   onChangeLatitude(e) {
-    this.setState({latitude: e.target.value});
+    this.setState({
+      latitude: e.target.value
+    });
   }
+
   onChangeLongitude(e) {
-    this.setState({longitude: e.target.value});
+    this.setState({
+      longitude: e.target.value
+    });
   }
 
   onSubmit(e) {
