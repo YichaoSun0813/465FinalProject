@@ -9,9 +9,9 @@ import { Marker } from 'google-maps-react';
 //import CurrentLocation from './Map.component';
 
 const mapStyles = {
-  width: '80%',
+  width: '73%',
   height: '80%',
-  position: 'absolute'
+  position: 'relative',
 };
 
 const styles = [
