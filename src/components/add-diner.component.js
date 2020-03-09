@@ -27,11 +27,18 @@ export default class AddDiner extends Component {
     }
   }
 
+  //get the users from the database to check if entry is from
+  //""verified"" user
+  //!!!!!!!!!!!!!!!!!!!!!!check through the routine to see what else
+  //needs changed after this fix
   componentDidMount() {
-    this.setState({ 
-      users: ['test user'],
-      username: 'test user'
-    });
+      axios.get('http://localhost:5000/users')
+      .then(response => {
+        this.setState({ users: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
   }
 
   //methods to update the state properties
