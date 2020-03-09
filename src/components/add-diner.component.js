@@ -102,6 +102,7 @@ export default class AddDiner extends Component {
           <div className="form-group"> 
             <label>Username: </label>
             <select ref="userInput"
+                id="class1"
                 required
                 className="form-control"
                 value={this.state.username}
@@ -119,6 +120,7 @@ export default class AddDiner extends Component {
           <div className="form-group"> 
             <label>Diner: </label>
             <input  type="text"
+                id="class1"
                 required
                 className="form-control"
                 value={this.state.dinerName}
@@ -129,6 +131,7 @@ export default class AddDiner extends Component {
             <label>Description: </label>
             <input 
                 type="text" 
+                id="class1"
                 className="form-control"
                 value={this.state.description}
                 onChange={this.onChangeDescription}
@@ -138,6 +141,7 @@ export default class AddDiner extends Component {
             <label>Latitude: </label>
             <input 
                 type="text" 
+                id="class1"
                 className="form-control"
                 value={this.state.latitude}
                 onChange={this.onChangeLatitude}
