@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const pTagStyle = {
+const pElStyle = {
     fontSize: '40px',
     color: '#768c34',
     textAlign: 'center',
@@ -41,7 +41,7 @@ export default class Landing extends Component {
 
     render() {
         return (
-           <p style={pTagStyle}>{this.displayQuote()}</p> 
+           <p style={pElStyle}>{this.displayQuote()}</p> 
         );
     }
 }
