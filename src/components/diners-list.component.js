@@ -9,7 +9,7 @@ import { Marker } from 'google-maps-react';
 //import CurrentLocation from './Map.component';
 
 const mapStyles = {
-  width: '80%',
+  width: '57.8%',
   height: '80%',
   position: 'absolute'
 };
@@ -325,7 +325,7 @@ export class DinersList extends Component {
     }
   };
 
-  displayMarkers = () => {
+  displayMarker = () => {
     return this.state.diners.map((diner, index) => {
       return <Marker key={index} id={index} position={{
        lat: diner.latitude,
@@ -336,35 +336,180 @@ export class DinersList extends Component {
   }
 
   render() {
+
     return (
 
       <Map
-        google={this.props.google}
-        zoom={14}
-        style={mapStyles}
-        styles={styles}
-        initialCenter={{ 
-          lat: 45.5127,
-          lng: -122.6795
-        }}
+      google={this.props.google}
+      zoom={14}
+      style={mapStyles}
+      styles={styles}
+      initialCenter={{ 
+        lat: 45.5127,
+        lng: -122.6795
+      }}
+    >
+      <Marker 
+        position = 
+        {{ lat: 45.431, lng: -122.374}} 
+        onClick={this.onMarkerClick} 
+        name ={'Backroads Pub & Grub'} 
+      />
+ 
+      <Marker 
+        position = 
+        {{ lat: 45.522, lng: -122.682}} 
+        onClick={this.onMarkerClick} 
+        name ={'The Roxy'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.529, lng: -122.689}} 
+        onClick={this.onMarkerClick} 
+        name ={'Salt & Straw'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.560, lng: -122.924}} 
+        onClick={this.onMarkerClick} 
+        name ={'Topgolf'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.503, lng: -122.675}} 
+        onClick={this.onMarkerClick} 
+        name ={'Ascendant Beer Company'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.505, lng: -122.632}} 
+        onClick={this.onMarkerClick} 
+        name ={'Pok Pok'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.494, lng: -122.669}} 
+        onClick={this.onMarkerClick} 
+        name ={'The Old Spaghetti Factory'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.481, lng: -122.677}} 
+        onClick={this.onMarkerClick} 
+        name ={'JoLa Cafe'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.473, lng: -122.672}} 
+        onClick={this.onMarkerClick} 
+        name ={'Szechuan Chef'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.470, lng: -122.732}} 
+        onClick={this.onMarkerClick} 
+        name ={'Maplewood Coffee & Tea'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.528, lng: -122.698}} 
+        onClick={this.onMarkerClick} 
+        name ={'Papa Haydn'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.546, lng: -122.711}} 
+        onClick={this.onMarkerClick} 
+        name ={'Domino Pizza'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.488, lng: -122.812}} 
+        onClick={this.onMarkerClick} 
+        name ={'Pietro Pizza Beaverton'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.492, lng: -122.810}} 
+        onClick={this.onMarkerClick} 
+        name ={'The Westgate Bourbon Bar & Taphouse'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.446, lng: -122.726}} 
+        onClick={this.onMarkerClick} 
+        name ={'Bullseye Pub'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.446, lng: -122.777}} 
+        onClick={this.onMarkerClick} 
+        name ={'Thirsty Lion Gastropub and Grill'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.437, lng: -122.827}} 
+        onClick={this.onMarkerClick} 
+        name ={'Five Guys'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.374, lng: -122.912}} 
+        onClick={this.onMarkerClick} 
+        name ={'Alloro Vineyard'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.428, lng: -122.321}} 
+        onClick={this.onMarkerClick} 
+        name ={'Backroads Pub & Grub'} 
+      />
+
+      <Marker 
+        position = 
+        {{ lat: 45.509472, lng: -122.682616}} 
+        onClick={this.onMarkerClick} 
+        name ={'Duck House Chinese'} 
+      />
+
+      <Marker 
+        onClick={this.onMarkerClick} 
+        name ={'Portland Oregon'} 
+      />
+
+      
+
+      <InfoWindow
+        marker={this.state.activeMarker}
+        visible={this.state.showingInfoWindow}
+        onClose={this.onClose}
       >
-        <Marker 
-          onClick={this.onMarkerClick} 
-          name ={'Portland Oregon'} 
-        />
 
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
-          onClose={this.onClose}
-        >
+       <div>
+          <h4>{this.state.selectedPlace.name}</h4>
+        </div>
 
-          <div>
-            <h4>{this.state.selectedPlace.name}</h4>
-          </div>
+      </InfoWindow>
 
-        </InfoWindow>
-      </Map>
+   
+        </Map>
     );
   }
 }
