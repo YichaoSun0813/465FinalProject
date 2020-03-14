@@ -8,12 +8,22 @@ import { Marker } from 'google-maps-react';
 
 //import CurrentLocation from './Map.component';
 
+//map should really be set relative to parent elements
+//in style.css, but I eyeballed it on my screen to look
+//somewhat lined up
+//TODO (Kris): align the map based on parent element in css
 const mapStyles = {
   width: '73%',
   height: '80%',
   position: 'relative',
 };
 
+//https://developers.google.com/maps/documentation/javascript/style-reference
+//^^used google developer to find all the possible elements and features that
+//were available for edit and how they could be edited
+
+//https://mapstyle.withgoogle.com/
+//^^used mapstyle to generate a template for how to edit features on map
 const styles = [
   {
     "elementType": "geometry",
@@ -282,7 +292,7 @@ const styles = [
   }
 ]
 
-
+//component to display the google map
 export class DinersList extends Component {
   constructor(props) {
     super(props);
@@ -293,6 +303,15 @@ export class DinersList extends Component {
                 };
   }
 
+  //method to retrieve data from the DB in order to fill in the 
+  //map with markers using coordinates
+
+  //returns list of diners with fields:
+  //username: String
+  //dinerName: String
+  //description: String
+  //latitude: String
+  //longitude: String
   componentDidMount(){
     axios.get('http://localhost:5000/diners')
     .then(response => {
@@ -309,6 +328,7 @@ export class DinersList extends Component {
     selectedPlace: {}
   };
 */
+  //show info window when user clicks on a marker
   onMarkerClick = (props, marker, e) =>
     this.setState({
       selectedPlace: props,
@@ -316,6 +336,7 @@ export class DinersList extends Component {
       showingInfoWindow: true
     });
 
+  //if info window is closed reset the state
   onClose = props => {
     if (this.state.showingInfoWindow) {
       this.setState({
@@ -325,6 +346,9 @@ export class DinersList extends Component {
     }
   };
 
+  //method to iterate over the corrdinates recieved from the DB
+  //and place markers on the map. markers have just been placed 
+  //manually
   displayMarkers = () => {
     return this.state.diners.map((diner, index) => {
       return <Marker key={index} id={index} position={{

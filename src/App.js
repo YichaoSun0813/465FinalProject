@@ -1,3 +1,4 @@
+//build the front end using React, BrowserRouter, Route and bootstrap
 import React from 'react';
 //inport react router
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -14,6 +15,9 @@ import CreateUser from "./components/create-user.component";
 //a route element for each route in the application
 //along wiht its corresponding path
 //'component' is loaded when user goes to a certain path
+
+//exact is used when every location on the site takes its
+//root path '/' and adds 
 function App() {
   return (
     <Router>

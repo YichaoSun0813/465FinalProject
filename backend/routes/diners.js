@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let Diner = require('../models/diner.model');
 
-//Todo: (Kris) create a way to delete diners from the database 
+//TODO (Kris): create a way to delete diners from the database 
 //as well as edit for a fully functional CRUD app
 
 //get request returns all diners

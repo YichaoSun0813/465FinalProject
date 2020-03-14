@@ -12,14 +12,17 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const app = express();
-//listen on port 5000 unless otherwise specified
+//listen on port 5000 unless otherwise specified in the .env file
 const port = process.env.PORT || 5000;
 
+//begin building out the express middleware stack
 app.use(cors());
 app.use(express.json());
 
+//grab ATLAS_URI from .env file
 const uri = process.env.ATLAS_URI;
 
+//
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 
 const connection = mongoose.connection;
@@ -30,7 +33,8 @@ connection.once('open', () => {
     console.log("MongoDB connection established");
 })
 
-//load the routers from specified files
+//load the routers from specified files to continue building out 
+//the express middleware
 const dinersRouter = require('./routes/diners');
 const usersRouter = require('./routes/users');
 

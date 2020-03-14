@@ -1,3 +1,4 @@
+//using mongoose to create model schema
 const mongoose = require('mongoose');
 
 //'dinerSchema' contains:
