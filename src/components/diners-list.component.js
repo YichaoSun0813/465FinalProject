@@ -5,6 +5,9 @@ import { Map } from 'google-maps-react';
 import { GoogleApiWrapper } from 'google-maps-react';
 import { InfoWindow } from 'google-maps-react';
 import { Marker } from 'google-maps-react';
+import myAdd from './add-diner.component.js';
+
+
 
 //import CurrentLocation from './Map.component';
 
@@ -297,10 +300,10 @@ export class DinersList extends Component {
   constructor(props) {
     super(props);
     this.state = {diners: [],
-                  showingInfoWindow: false,
-                  activeMarker: {},
-                  selectedPlace: {}
-                };
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {}
+    };
   }
 
   //method to retrieve data from the DB in order to fill in the 
@@ -514,6 +517,13 @@ export class DinersList extends Component {
       />
 
       <Marker 
+        position = 
+        {{ lat: myAdd.lat, lng: myAdd.lng}} 
+        onClick={this.onMarkerClick} 
+        name ={'Test'} 
+      />
+
+      <Marker 
         onClick={this.onMarkerClick} 
         name ={'Portland Oregon'} 
       />
@@ -542,3 +552,5 @@ export class DinersList extends Component {
 export default GoogleApiWrapper({
   apiKey: 'AIzaSyB5gNUHXaTffk3vGkJeRqEUwGhcgzDUgz0'
 }) (DinersList);
+
+

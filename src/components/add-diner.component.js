@@ -4,6 +4,7 @@ import qs from 'qs';
 
 const axios = require('axios').default;
 
+
 export default class AddDiner extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +26,9 @@ export default class AddDiner extends Component {
       longitude: '',
       users: []
     }
+
+    this.lat = 1;
+    this.lng = 1;
   }
 
   //get the users from the database to check if entry is from
@@ -159,6 +163,7 @@ export default class AddDiner extends Component {
             <label>Longitude: </label>
             <input 
                 type="text" 
+                id="class1"
                 className="form-control"
                 value={this.state.longitude}
                 onChange={this.onChangeLongitude}
@@ -174,3 +179,5 @@ export default class AddDiner extends Component {
     )
   }
 }
+
+
